@@ -1,0 +1,61 @@
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>User</h1>
+      </div>
+      <div class="col-sm-6 text-right">
+        <button class="btn btn-primary" (click)="onModalAdd()"><i class="fa fa-plus"></i> Tạo tài khoản người dùng mới</button>
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+<section class="content">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-header">
+        <div class="input-group input-group-sm">
+          <input type="text" name="table_search" (keydown.enter)="getAll()" class="form-control float-right" [(ngModel)]="search" placeholder="Search">
+          <div class="input-group-append">
+            <button type="submit" class="btn btn-default" (click)="getAll()">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="card-body p-0">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th style="width: 10px">#</th>
+              <th>Tên</th>
+              <th>Email</th>
+              <th style="width: 40px">Chức năng</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let item of pageList; let idx = index;">
+              <tr>
+                <th style="width: 10px">{{idx + 1}}</th>
+                <th>{{item.name}}</th>
+                <th>{{item.email}}</th>
+                <th style="width: 40px">Label</th>
+              </tr>
+            </ng-container>
+            <!-- <table>
+
+              <tr *ngFor="let item of items | slice: (page-1) * pageSize : page * pageSize">
+
+              </tr>
+            </table> -->
+          </tbody>
+        </table>
+        <!-- <ngb-pagination
+          [(page)]="page"
+          [pageSize]="pageSize"
+          [collectionSize]="items.length"></ngb-pagination> -->
+      </div>
+      <!-- /.card-body -->
+    </div>
+  </div>
+</section>
