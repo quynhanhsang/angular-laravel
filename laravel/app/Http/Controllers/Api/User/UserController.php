@@ -34,13 +34,13 @@ class UserController extends Controller
 
         $result = $validator;
 
-        $result = User::insert([
-            'name' => $request->name,
+        $result = User::create([
+            'fullName' => $request->fullName,
             'email' => $request->email,
             // 'fullName' => $request->fullName,
         ]);
 
         //$result = $result->get();
-        return response()->json($result);
+        return response()->json('sang');
     }
 }
