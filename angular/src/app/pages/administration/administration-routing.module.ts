@@ -1,6 +1,8 @@
 import {NgModule} from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { AdministrationComponent } from './administration.component';
+import { AuthGuard } from 'src/app/services/auth.guard';
+import { AddUsersComponent } from './users/modal/add/add-users.component';
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
     imports: [
@@ -8,7 +10,20 @@ import { AdministrationComponent } from './administration.component';
             {
                 path: '',
                 children: [
-                    { path: 'user', component: AdministrationComponent},
+                    { path: '', redirectTo: '/admin/users', pathMatch: 'full'},
+
+                    { path: 'users', component: UsersComponent, canActivate:[AuthGuard], children:[
+                      {
+                        path: 'add',
+                           component: AddUsersComponent,
+                           canActivate: [AuthGuard],
+                      },
+                      {  path: 'edit:id',
+                         component: AddUsersComponent,
+                         canActivate: [AuthGuard],
+                      },
+                    ]},
+
                 ]
             }
         ])

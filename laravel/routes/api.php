@@ -37,6 +37,8 @@ Route::group(['namespace'=>'Api\Auth'], function(){
 Route::group(['namespace'=>'Api\User'], function(){
     Route::post('/users/search', 'UserController@search')->middleware('auth:api');
     Route::post('/users/add', 'UserController@add')->middleware('auth:api');
+    Route::post('/users/edit', 'UserController@edit')->middleware('auth:api');
+
     Route::get('/users/profile/{id}', 'ProfileController@getById')->middleware('auth:api');
     Route::post('/users/edit', 'ProfileController@edit')->middleware('auth:api');
     // Route::post('/register', 'RegisterController@register');

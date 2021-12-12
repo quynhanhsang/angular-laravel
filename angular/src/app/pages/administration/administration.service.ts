@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { AppConst } from 'src/app/shared/AppConsts';
-import { UserDto, UserProfileDto } from './administration.model';
+import { FilterUserDto, UserDto, UserProfileDto } from './administration.model';
 
 
 @Injectable({
@@ -18,7 +18,7 @@ export class AdministrationService {
     return this.http.get(AppConst.remoteServiceBaseUrl + `/api/users/profile/${id}`);
   }
 
-  search(user?: UserDto){
+  search(user?: FilterUserDto){
     return this.http.post(AppConst.remoteServiceBaseUrl +'/api/users/search', user);
   }
 

@@ -1,3 +1,4 @@
+<router-outlet></router-outlet>
 <section class="content-header">
   <div class="container-fluid">
     <div class="row mb-2">
@@ -5,7 +6,7 @@
         <h1>User</h1>
       </div>
       <div class="col-sm-6 text-right">
-        <button class="btn btn-primary" (click)="onModalAdd()"><i class="fa fa-plus"></i> Tạo tài khoản người dùng mới</button>
+        <a [routerLink]="['add']" class="btn btn-primary" (click)="onModalAdd()"><i class="fa fa-plus"></i> Tạo tài khoản người dùng mới</a>
       </div>
     </div>
   </div><!-- /.container-fluid -->
@@ -30,18 +31,20 @@
               <th style="width: 10px">#</th>
               <th>Tên</th>
               <th>Email</th>
-              <th style="width: 40px">Chức năng</th>
+              <th>Chức năng</th>
             </tr>
           </thead>
           <tbody>
-            <ng-container *ngFor="let item of pageList; let idx = index;">
+            <!-- <ng-container *ngFor="let item of pageList; let idx = index;">
               <tr>
-                <th style="width: 10px">{{idx + 1}}</th>
-                <th>{{item.name}}</th>
-                <th>{{item.email}}</th>
-                <th style="width: 40px">Label</th>
+                <td style="width: 10px">{{idx + 1}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.email}}</td>
+                <td>
+                  <a title="Chỉnh sửa" class="btn text-info" (click)="onModalEdit(item)" ><i class="far fa-edit"></i></a>
+                </td>
               </tr>
-            </ng-container>
+            </ng-container> -->
             <!-- <table>
 
               <tr *ngFor="let item of items | slice: (page-1) * pageSize : page * pageSize">

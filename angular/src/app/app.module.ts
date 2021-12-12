@@ -23,6 +23,8 @@ import { LoadingBarModule } from '@ngx-loading-bar/core';
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import { AdministrationRoutingModule } from './pages/administration/administration-routing.module';
 import { RouterModule } from '@angular/router';
+import { NgxModalDraggableDirective } from './utilities/directive/modal-draggable.directive';
+import { LoadingScreenComponent } from './utilities/splash/loading-screen.component';
 
 export function getRemoteServiceBaseUrl(): string {
   return AppConst.remoteServiceBaseUrl;
@@ -82,7 +84,13 @@ const customNotifierOptions: NotifierOptions = {
     HomeComponent,
     LogoutComponent,
     ValidationMessagesComponent,
-    ProfileComponent
+    NgxModalDraggableDirective,
+    ProfileComponent,
+
+    LoadingScreenComponent,
+    //admintrator
+    // AddUsersComponent,
+    // UsersComponent,
   ],
   imports: [
     BrowserModule,

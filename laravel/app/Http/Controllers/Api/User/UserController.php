@@ -26,21 +26,54 @@ class UserController extends Controller
     public function add(Request $request)
     {
         $validator = $this->validate($request, [
-            'fullName' => 'required',
             'email' => 'required',
-            // 'name' => 'required',
-            // 'dateBirth' => 'required|date_format:Y-m-d',
+            'name' => 'required',
+            'fullName' => 'required',
+            'password'=> 'required',
         ]);
 
         $result = $validator;
 
-        $result = User::create([
-            'fullName' => $request->fullName,
+        $user = User::create([
             'email' => $request->email,
-            // 'fullName' => $request->fullName,
+            'name' => $request->name,
+            'fullName' => $request->fullName,
+            'password'=> $request->password,
+        ]);
+        if($user){
+            $result = [
+                'message'=>'Bạn đã thêm mới thành công',
+                'messageType'=>1,
+            ];
+        }
+        return response()->json($result);
+    }
+
+    public function edit(Request $request){
+
+        $validator = $this->validate($request, [
+            'email' => 'required',
+            'name' => 'required',
+            'fullName' => 'required',
+            'password'=> 'required',
         ]);
 
-        //$result = $result->get();
-        return response()->json('sang');
+        $reponse = $validator;
+
+        $user = Profile::whereId($request->id)->update([
+            'fullName' => $request->fullName,
+            'email' => $request->email,
+            'name' =>  $request->name,
+            'password'=> $request->password,
+        ]);
+
+        if($user){
+            $reponse = [
+                'message' => 'Update thành công',
+                'type'=> 2,
+            ];
+        }
+
+        return response($reponse);
     }
 }

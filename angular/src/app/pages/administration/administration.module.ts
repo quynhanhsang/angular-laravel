@@ -2,15 +2,14 @@ import { CommonModule } from "@angular/common";
 import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { LoadingBarModule } from "@ngx-loading-bar/core";
 import { LoadingBarRouterModule } from "@ngx-loading-bar/router";
 import { NotifierModule, NotifierOptions } from "angular-notifier";
 import { AdministrationRoutingModule } from "./administration-routing.module";
-import { AdministrationComponent } from "./administration.component";
-import { AddAdministrationComponent } from "./modal/add/add-administration.component";
+import { AddUsersComponent } from "./users/modal/add/add-users.component";
+import { UsersComponent } from "./users/users.component";
 
 const customNotifierOptions: NotifierOptions = {
   position: {
@@ -67,8 +66,9 @@ const customNotifierOptions: NotifierOptions = {
       AdministrationRoutingModule
     ],
     declarations: [
-      AdministrationComponent,
-      AddAdministrationComponent
+          //admintrator
+      AddUsersComponent,
+      UsersComponent,
     ],
     exports: [
 

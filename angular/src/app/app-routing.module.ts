@@ -24,6 +24,7 @@ import { AppComponent } from './app.component';
 //   {path: 'user', component: DashboardComponent, canActivate:[AuthGuard]},
 // ];
 const routes = [
+
   {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'logout', component: LogoutComponent, canActivate:[AuthGuard]},
@@ -32,7 +33,6 @@ const routes = [
   {path: 'reset-password', component: ResetPasswordComponent},
   {path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
   {path: 'profile', component: DashboardComponent, canActivate:[AuthGuard]},
-
   {
     path: 'admin',
     loadChildren: () => import('./pages/administration/administration.module').then(m => m.AdministrationModule),
@@ -58,7 +58,7 @@ const routes = [
   // }
 ]
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule {
