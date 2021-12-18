@@ -8,6 +8,8 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes; // add soft delete
 use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class User extends Authenticatable
 {
@@ -44,4 +46,7 @@ class User extends Authenticatable
     // {
     //     $product->id_user = Auth::id();
     // }
+
+    protected $guard_name = 'api';
+
 }
