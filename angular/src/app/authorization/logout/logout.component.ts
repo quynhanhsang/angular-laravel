@@ -20,7 +20,7 @@ export class LogoutComponent implements OnInit {
     this.auth.logout(this.checkbox).subscribe((res)=>{
       console.log(res);
       localStorage.removeItem('user');
-
+      localStorage.removeItem('token');
       this.auth.toggleLogin(false);
       // Redirect
       this.router.navigate(['/']);

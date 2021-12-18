@@ -1,25 +1,18 @@
 <?php
 
 namespace App;
+use Illuminate\Database\Eloquent\Model;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\SoftDeletes; // add soft delete
-use Laravel\Passport\HasApiTokens;
-use Spatie\Permission\Traits\HasRoles;
-
-class User extends Authenticatable
+class Role extends Model
 {
-    use HasApiTokens, Notifiable, SoftDeletes, HasRoles;
-
+    protected $table = 'roles';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','fullName', 'id_user',
+        'role_name', 'permission_key', 'parent_id', 'role_id',
     ];
 
     /**
@@ -28,7 +21,6 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
     ];
 
     /**
@@ -37,7 +29,6 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
     ];
 
     // public function creating(Product $product)

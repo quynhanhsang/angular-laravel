@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use App\Permission;
 class AuthenticationController extends Controller
 {
     public function login(Request $request)
@@ -34,6 +34,7 @@ class AuthenticationController extends Controller
             'updated_at' => $user->updated_at,
             'token' => $token->accessToken,
             'token_expires_at' => $token->token->expires_at,
+            'permission'=>Permission::query()->get(),
         ], 200);
     }
 

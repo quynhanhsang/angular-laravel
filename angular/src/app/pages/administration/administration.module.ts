@@ -12,6 +12,9 @@ import { HideScrollbarYDirective } from "src/app/utilities/directive/hide-scroll
 import { NgxModalDraggableDirective } from "src/app/utilities/directive/modal-draggable.directive";
 import { ValidationCustomMessagesComponent } from "src/app/utilities/validation/validation-custom-messages.component";
 import { AdministrationRoutingModule } from "./administration-routing.module";
+import { AddRolesComponent } from "./roles/modal/add/add-roles.component";
+import { EditRolesComponent } from "./roles/modal/edit/edit-roles.component";
+import { RolesComponent } from "./roles/roles.component";
 import { AddUsersComponent } from "./users/modal/add/add-users.component";
 import { EditUsersComponent } from "./users/modal/edit/edit-users.component";
 import { UsersComponent } from "./users/users.component";
@@ -78,6 +81,10 @@ const customNotifierOptions: NotifierOptions = {
       AddUsersComponent,
       EditUsersComponent,
       UsersComponent,
+      RolesComponent,
+      EditRolesComponent,
+      AddRolesComponent,
+
       ValidationCustomMessagesComponent,
       NgxModalDraggableDirective,
       HideScrollbarYDirective

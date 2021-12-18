@@ -14,10 +14,15 @@ export class AuthenticationService {
 
   }
 
-  userToken: any;
   getUser(){
     const user: any = localStorage.getItem('user');
     return JSON.parse(user);
+  }
+
+  getPermission(){
+    const user: any = localStorage.getItem('user');
+    const permission: any = JSON.parse(user).permission;
+    return permission;
   }
 
   // Toogle Loggedin

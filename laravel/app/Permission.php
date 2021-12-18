@@ -1,21 +1,18 @@
 <?php
 
 namespace App;
+use Illuminate\Database\Eloquent\Model;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\SoftDeletes; // add soft delete
-
-class Permission
+class Permission extends Model
 {
-    use Notifiable, SoftDeletes;
-
+    protected $table = 'permission';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'permission_name', 'permission_key', 'parent_id', '',
+        'permission_name', 'permission_key', 'parent_id', 'role_id',
     ];
 
     /**
@@ -24,7 +21,6 @@ class Permission
      * @var array
      */
     protected $hidden = [
-        '', '',
     ];
 
     /**
@@ -33,7 +29,6 @@ class Permission
      * @var array
      */
     protected $casts = [
-        '' => '',
     ];
 
     // public function creating(Product $product)

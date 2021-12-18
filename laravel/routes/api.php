@@ -34,6 +34,10 @@ Route::group(['namespace'=>'Api\Auth'], function(){
     Route::post('/reset', 'ForgotPasswordController@reset');
 });
 
+Route::group(['namespace'=>'Api\Permission'], function(){
+    Route::get('permission/getall', 'PermissionController@getAll');
+});
+
 Route::group(['namespace'=>'Api\User'], function(){
     Route::post('/users/filter', 'UserController@filter')->middleware('auth:api');
     Route::post('/users/add', 'UserController@add')->middleware('auth:api');
