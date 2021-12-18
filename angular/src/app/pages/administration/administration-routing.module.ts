@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AuthGuard } from 'src/app/services/auth.guard';
 import { AddUsersComponent } from './users/modal/add/add-users.component';
+import { EditUsersComponent } from './users/modal/edit/edit-users.component';
 import { UsersComponent } from './users/users.component';
 
 @NgModule({
@@ -18,8 +19,8 @@ import { UsersComponent } from './users/users.component';
                            component: AddUsersComponent,
                            canActivate: [AuthGuard],
                       },
-                      {  path: 'edit:id',
-                         component: AddUsersComponent,
+                      {  path: 'edit/:id',
+                         component: EditUsersComponent,
                          canActivate: [AuthGuard],
                       },
                     ]},

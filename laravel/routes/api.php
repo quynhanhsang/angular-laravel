@@ -35,12 +35,15 @@ Route::group(['namespace'=>'Api\Auth'], function(){
 });
 
 Route::group(['namespace'=>'Api\User'], function(){
-    Route::post('/users/search', 'UserController@search')->middleware('auth:api');
+    Route::post('/users/filter', 'UserController@filter')->middleware('auth:api');
     Route::post('/users/add', 'UserController@add')->middleware('auth:api');
     Route::post('/users/edit', 'UserController@edit')->middleware('auth:api');
+    Route::get('/users/getbyid/{id}', 'UserController@getById')->middleware('auth:api');
+    Route::get('/users/delete/{id}', 'UserController@delete')->middleware('auth:api');
+    Route::post('/users/deleterange', 'UserController@deleterange')->middleware('auth:api');
 
     Route::get('/users/profile/{id}', 'ProfileController@getById')->middleware('auth:api');
-    Route::post('/users/edit', 'ProfileController@edit')->middleware('auth:api');
+    //Route::post('/users/edit', 'ProfileController@edit')->middleware('auth:api');
     // Route::post('/register', 'RegisterController@register');
     // Route::post('/forgot', 'ForgotPasswordController@forgot');
     // Route::post('/reset', 'ForgotPasswordController@reset');

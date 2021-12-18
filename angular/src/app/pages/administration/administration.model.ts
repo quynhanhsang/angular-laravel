@@ -2,6 +2,7 @@ import { PaginatedListDto } from "src/app/components/common/base-dto/base-pagina
 import { BaseAddDto } from "src/app/shared/base-dto/base-add-dto";
 import { BaseDeleteDto } from "src/app/shared/base-dto/base-delete-dto";
 import { BaseDto } from "src/app/shared/base-dto/base-dto";
+import { BaseEditDto } from "src/app/shared/base-dto/base-edit-dto";
 import { BaseFilterDto } from "src/app/shared/base-dto/base-filter-dto";
 
 export class AddUsersDto extends BaseAddDto {
@@ -10,6 +11,16 @@ export class AddUsersDto extends BaseAddDto {
   dateBirth: Date;
   name: string;
   password: string;
+  writepassword: string;
+}
+
+export class EditUsersDto extends BaseEditDto {
+  email: string;
+  fullName: string;
+  dateBirth: Date;
+  name: string;
+  password: string;
+  writepassword: string;
 }
 
 export class UserProfileDto{
@@ -29,8 +40,8 @@ export class UserDto extends BaseDto{
 
 
 export class FilterUserDto extends BaseFilterDto{
-  // email: string;
-  // fullName: string;
+  filter: string;
+  fullName: string;
   // dateBirth: Date;
 }
 

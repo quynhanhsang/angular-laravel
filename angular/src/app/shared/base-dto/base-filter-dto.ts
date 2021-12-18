@@ -23,7 +23,7 @@ export class BaseFilterDto {
 
     constructor() {
         this.pageIndex = 1;
-        this.pageSize = 50;
+        this.pageSize = 10;
         this.orderBy = "CreatedDate";
         this.orderByDesc = true;
     }

@@ -47,7 +47,7 @@ export class MainBaseComponent<TDto extends BaseDto, TFilterDto extends BaseFilt
     // đăng kí hộp thư tin nhắn
     shareService.changeEmitted$.subscribe( dto => {
       // kiểm tra có phải gửi đúng component không, dựa theo id
-      if(!dto.id.includes(this.componentId)) {
+      if(!dto.ids.includes(this.componentId)) {
         return;
       }
       let reload = dto.data;
@@ -84,7 +84,7 @@ export class MainBaseComponent<TDto extends BaseDto, TFilterDto extends BaseFilt
   }
 
   registerBaseRoute(params: ParamMap) {
-    this.filterDto.pageIndex = params['params']['pageIndex'] == undefined ? this.filterDto.pageIndex : +params['params']['pageIndex'];
+    this.filterDto.pageIndex = (params['params']['pageIndex'] == undefined || params['params']['pageIndex'] > this.filterDto.pageIndex)? this.filterDto.pageIndex : +params['params']['pageIndex'];
     this.filterDto.pageSize = params['params']['pageSize'] == undefined ? this.filterDto.pageSize : +params['params']['pageSize'];
 
     this.filterDto.orderBy = params['params']['orderBy'] == undefined ? this.filterDto.orderBy : params['params']['orderBy'];
@@ -106,6 +106,7 @@ export class MainBaseComponent<TDto extends BaseDto, TFilterDto extends BaseFilt
 
   loadPage() {
     // change route
+
     this.routerService.navigate(this.filterDto, true).then(reLoadData => {
       // nếu route không đổi, load lại data nếu cần!
       if(reLoadData) {
@@ -139,7 +140,7 @@ export class MainBaseComponent<TDto extends BaseDto, TFilterDto extends BaseFilt
       }, () => {
       });
     } else {
-      this.notifierService.notify("Không xác định", 'error');
+      this.notifierService.notify('error', "Không xác định" );
       return;
     }
   }
@@ -153,7 +154,7 @@ export class MainBaseComponent<TDto extends BaseDto, TFilterDto extends BaseFilt
       }, () => {
       });
     } else {
-      this.notifierService.notify("Chưa cái nào được chọn", 'error');
+      this.notifierService.notify('error',"Chưa cái nào được chọn");
       return;
     }
   }

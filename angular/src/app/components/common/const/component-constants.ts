@@ -1,10 +1,3 @@
 export const COMPONENT_IDS = {
     USER_COMPONENT: 1,
 }
-
-export const MESSAGE_IDS = {
-    PLAYING_STATUS: 1001,
-    PAUSED_STATUS: 1002,
-    GET_IMAGE_LIST: 1003,
-    GET_VIDEO_LIST: 1004
-}

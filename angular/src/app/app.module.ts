@@ -84,7 +84,7 @@ const customNotifierOptions: NotifierOptions = {
     HomeComponent,
     LogoutComponent,
     ValidationMessagesComponent,
-    NgxModalDraggableDirective,
+    // NgxModalDraggableDirective,
     ProfileComponent,
 
     LoadingScreenComponent,

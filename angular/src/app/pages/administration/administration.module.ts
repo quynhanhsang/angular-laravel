@@ -7,8 +7,13 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { LoadingBarModule } from "@ngx-loading-bar/core";
 import { LoadingBarRouterModule } from "@ngx-loading-bar/router";
 import { NotifierModule, NotifierOptions } from "angular-notifier";
+import { AppModule } from "src/app/app.module";
+import { HideScrollbarYDirective } from "src/app/utilities/directive/hide-scrollbar-y.directive";
+import { NgxModalDraggableDirective } from "src/app/utilities/directive/modal-draggable.directive";
+import { ValidationCustomMessagesComponent } from "src/app/utilities/validation/validation-custom-messages.component";
 import { AdministrationRoutingModule } from "./administration-routing.module";
 import { AddUsersComponent } from "./users/modal/add/add-users.component";
+import { EditUsersComponent } from "./users/modal/edit/edit-users.component";
 import { UsersComponent } from "./users/users.component";
 
 const customNotifierOptions: NotifierOptions = {
@@ -54,7 +59,9 @@ const customNotifierOptions: NotifierOptions = {
 
 @NgModule({
     imports: [
+      //AppModule,
       // BrowserModule,
+
       CommonModule,
       FormsModule,
       HttpClientModule,
@@ -63,12 +70,17 @@ const customNotifierOptions: NotifierOptions = {
       NotifierModule.withConfig(customNotifierOptions),
       LoadingBarModule,
       LoadingBarRouterModule,
-      AdministrationRoutingModule
+      AdministrationRoutingModule,
+
     ],
     declarations: [
           //admintrator
       AddUsersComponent,
+      EditUsersComponent,
       UsersComponent,
+      ValidationCustomMessagesComponent,
+      NgxModalDraggableDirective,
+      HideScrollbarYDirective
     ],
     exports: [
 

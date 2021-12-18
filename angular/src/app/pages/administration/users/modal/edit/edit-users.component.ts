@@ -1,12 +1,12 @@
 import { Component, ElementRef, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddBaseComponent } from 'src/app/pages/base-component/add-base/add-base.component';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ShareDataService } from 'src/app/shared/share-service/share.service';
 import { LoadingScreenService } from 'src/app/utilities/splash/loading-screen.service';
-import { AddUsersDto, UserDto } from '../../../administration.model';
+import { AddUsersDto, EditUsersDto, UserDto } from '../../../administration.model';
 import { AdministrationService } from '../../../administration.service';
 import {Location} from '@angular/common';
 import { ShareDto } from 'src/app/components/common/models/share-model';
@@ -15,13 +15,13 @@ import { NotifierService } from 'angular-notifier';
 import { AppUtilityService } from 'src/app/shared/share-service/app-utility.service';
 
 @Component({
-  selector: 'app-add-users',
-  templateUrl: './add-users.component.html',
-  styleUrls:['./add-users.component.css'] ,
+  selector: 'app-edit-users',
+  templateUrl: './edit-users.component.html',
+  styleUrls:['./edit-users.component.css'] ,
   providers: [NgbModal]
 })
-export class AddUsersComponent implements OnInit {
-  userDto: AddUsersDto;
+export class EditUsersComponent implements OnInit {
+  userDto: EditUsersDto;
   baseRoute: string;
   private notifierService: NotifierService;
   constructor(
@@ -29,28 +29,41 @@ export class AddUsersComponent implements OnInit {
     private usersService: AdministrationService,
     private titleService: Title,
     public router: Router,
+    public activeRoute: ActivatedRoute,
     public loadingPageService: LoadingScreenService,
     public location: Location,
     public shareService: ShareDataService,
     public modalService: NgbModal,
-    notifier: NotifierService,
+    notifierService: NotifierService,
     public element: ElementRef) {
       this.titleService.setTitle('Thêm mới user');
-      this.notifierService = notifier;
-
+      this.notifierService = notifierService;
   }
 
   @ViewChild('editModal') editModal : TemplateRef<any>;
 
   ngOnInit(): void {
     this.baseRoute = `/admin/users`;
-    this.userDto = new AddUsersDto();
+    this.userDto = new EditUsersDto();
+    this.activeRoute.params.subscribe(params => {
+      let id = params['id'];
+      this.getByid(id);
+    });
   }
   ngAfterViewInit(): void {
 
   }
+  getByid(id: string){
+    this.usersService.getById(id).subscribe((sub)=>{
+      this.userDto = sub;
+    }, (error)=>{
+      this.notifierService.notify('error', 'Xảy ra lỗi');
+      return;
+    })
+  }
+
   onSubmit(){
-    if(AppUtilityService.IsNullValidateForm('formAddUser')){
+    if(AppUtilityService.IsNullValidateForm('formEditUser')){
       this.notifierService.notify('error', 'Bạn cần nhập đủ dữ liệu các trường có dấu * đỏ !!!');
       return;
     }
@@ -58,13 +71,11 @@ export class AddUsersComponent implements OnInit {
       this.notifierService.notify('error', 'Mật khẩu không đúng');
       return;
     }
-    this.usersService.add(this.userDto).subscribe((subscribe: any)=>{
-      console.log(subscribe);
-      if(subscribe){
-        this.notifierService.notify('success',subscribe.message);
-        this.onClose();
-      }
 
+    this.usersService.edit(this.userDto).subscribe((subscribe: any)=>{
+
+      this.notifierService.notify('success',subscribe.message);
+      this.onClose();
     }, err=>{
      console.log(err, 'err');
     });
@@ -80,9 +91,5 @@ export class AddUsersComponent implements OnInit {
       dto.data = true;
       this.shareService.emitChange(dto);
     });
-  }
-
-  changePassword($event){
-
   }
 }

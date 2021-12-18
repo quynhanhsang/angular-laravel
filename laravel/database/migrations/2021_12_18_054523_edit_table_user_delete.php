@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddPaidToUsersTable extends Migration
+class EditTableUserDelete extends Migration
 {
     /**
      * Run the migrations.
@@ -14,9 +14,7 @@ class AddPaidToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            //
-            $table->string('fullName');
-            $table->timestamp('dateBirth')->nullable();
+            $table->softDeletes();
         });
     }
 
@@ -28,10 +26,7 @@ class AddPaidToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            //
-            $table->dropColumn('fullName');
-            $table->dropColumn('dateBirth');
-$table->tinyInteger('id_user');
+            $table->softDeletes();
         });
     }
 }

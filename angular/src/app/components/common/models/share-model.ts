@@ -1,4 +1,4 @@
 export class ShareDto {
-    id: Array<number>;
+    ids: Array<number>;
     data: any;
 }

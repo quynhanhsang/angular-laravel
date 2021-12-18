@@ -41,8 +41,8 @@ import { ShareDto } from "src/app/components/common/models/share-model";
       this.router.navigateByUrl(this.baseRoute).then(r => {
         // có cần load lại page khi tắt modal page đi không. Nếu add thành công thì load lại, không thì thôi
         let dto = new ShareDto();
-        dto.id = new Array<number>();
-        dto.id.push(this.baseComponentId);
+        dto.ids = new Array<number>();
+        dto.ids.push(this.baseComponentId);
         // không load lại dữ liệu
         dto.data = this.success;
         this.shareService.emitChange(dto);

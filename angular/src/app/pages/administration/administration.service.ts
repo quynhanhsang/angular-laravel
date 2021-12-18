@@ -2,7 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { AppConst } from 'src/app/shared/AppConsts';
-import { FilterUserDto, UserDto, UserProfileDto } from './administration.model';
+import { PaginatedListDto } from 'src/app/shared/base-dto/base-paginated-list-dto';
+import { AddUsersDto, DeleteUserRangeDto, EditUsersDto, FilterUserDto, UserDto, UserProfileDto } from './administration.model';
 
 
 @Injectable({
@@ -14,19 +15,26 @@ export class AdministrationService {
   }
 
   // Forgot Pass
-  getById(id:number){
-    return this.http.get(AppConst.remoteServiceBaseUrl + `/api/users/profile/${id}`);
+  getById(id:string){
+    return this.http.get<EditUsersDto>(AppConst.remoteServiceBaseUrl + `/api/users/getbyid/${id}`);
   }
 
-  search(user?: FilterUserDto){
-    return this.http.post(AppConst.remoteServiceBaseUrl +'/api/users/search', user);
+  filter(user?: FilterUserDto){
+    return this.http.post<PaginatedListDto<UserDto>>(AppConst.remoteServiceBaseUrl +'/api/users/filter', user);
   }
 
-  edit(user: UserDto){
+  edit(user: EditUsersDto){
     return this.http.post(AppConst.remoteServiceBaseUrl +'/api/users/edit', user);
   }
 
-  add(user: UserDto){
+  add(user: AddUsersDto){
     return this.http.post(AppConst.remoteServiceBaseUrl +'/api/users/add', user);
+  }
+  delete(id: string){
+    return this.http.get(AppConst.remoteServiceBaseUrl +'/api/users/delete/'+id);
+  }
+
+  deleteRange(ids: DeleteUserRangeDto){
+    return this.http.post(AppConst.remoteServiceBaseUrl +'/api/users/deleterange', ids);
   }
 }
