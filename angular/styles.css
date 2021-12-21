@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~angular-notifier/styles";
+.form-control-feedback {
+  color: #dc3545;
+  margin-top: 0.2rem;
+  font-size: .85rem;
+  text-align: left;
+}
+
+.fa-asterisk{
+  font-size: 7px;
+  color: #f5222d;
+}

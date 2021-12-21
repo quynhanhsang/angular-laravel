@@ -92,7 +92,7 @@ class UserController extends Controller
         if($user){
             $reponse = [
                 'message' => 'Update thành công',
-                'type'=> 2,
+                'messageType'=>1,
             ];
         }
 
