@@ -42,7 +42,7 @@ Route::group(['namespace'=>'Api\Role'], function(){
     Route::get('/roles/delete/{id}', 'RoleController@delete')->middleware('auth:api');
     Route::post('/roles/deleterange', 'RoleController@deleterange')->middleware('auth:api');
 
-    Route::get('/roles/getAllPermission', 'RoleController@getAllPermission')->middleware('auth:api');
+    Route::get('/roles/getAllPermission/{name}', 'RoleController@getAllPermission')->middleware('auth:api');
 });
 
 Route::group(['namespace'=>'Api\Permission'], function(){

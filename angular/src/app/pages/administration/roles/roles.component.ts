@@ -72,8 +72,6 @@ export class RolesComponent extends MainBaseComponent<BaseDto, FilterRolesDto, D
 
       this.paginatedList = subscribe;
       this.paginatedList.items = this.paginatedList.items.map((item)=>{ return {...item, using: ( item.id === this.userToken.id ? true : false)}; } );
-
-      console.log(this.paginatedList, 'this.paginatedList');
       this.loadingDone = true;
       //this.loadingPageService.stopLoading();
       this.loadingBarService.stop();
@@ -112,6 +110,7 @@ export class RolesComponent extends MainBaseComponent<BaseDto, FilterRolesDto, D
     this.rolesService.delete(id).subscribe( (subscribe: any) =>{
       this.notifierService.notify('success', subscribe.message);
       this.loadPage();
+     // this.registerRoute();
      }, err=>{
        console.log(err);
     });

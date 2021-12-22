@@ -22,10 +22,10 @@ class RoleController extends Controller
         # code...
     }
 
-    public function getAllPermission()
+    public function getAllPermission($name)
     {
         $result = [
-            'items'=>Permission::all(),
+            'items'=>Permission::where('guard_name',$name)->get(),
             'message'=>'Bạn đã thêm mới thành công',
             'messageType'=>1,
         ];
@@ -75,7 +75,7 @@ class RoleController extends Controller
         ]);
 
         foreach($request->namePermisson as $item ){
-            $role->givePermissionTo($item);
+            $role = $role->givePermissionTo($item);
         };
         if($role){
             $result = [
@@ -84,7 +84,7 @@ class RoleController extends Controller
             ];
         }
 
-        return  response()->json($request->namePermisson);
+        return  response()->json($result);
     }
 
     public function edit(Request $request){

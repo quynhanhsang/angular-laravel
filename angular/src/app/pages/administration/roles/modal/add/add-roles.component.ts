@@ -55,10 +55,8 @@ export class AddRolesComponent implements OnInit {
   }
 
   getAllPermission(){
-    debugger;
     this.rolesService.getAllPermission(this.roleDto.guard_name).subscribe((res)=>{
       this.listPermission = res;
-     console.log(this.listPermission, 'this.listPermission');
     }, ()=>{
 
     })
@@ -73,8 +71,14 @@ export class AddRolesComponent implements OnInit {
       this.notifierService.notify('error', 'Bạn cần nhập đủ dữ liệu các trường có dấu * đỏ !!!');
       return;
     }
+
+    if(this.roleDto.namePermisson.length<=0){
+      this.notifierService.notify('error', 'Chưa có chức năng dành cho '+ this.roleDto.guard_name);
+      return;
+    }
+
     this.rolesService.add(this.roleDto).subscribe((subscribe: any)=>{
-      console.log(subscribe, 'subrice')
+      console.log(subscribe, 'subscribe')
       if(subscribe){
         this.notifierService.notify('success',subscribe.message);
         this.onClose();
