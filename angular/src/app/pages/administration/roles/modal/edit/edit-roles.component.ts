@@ -60,12 +60,12 @@ export class EditRolesComponent implements OnInit {
   }
 
   getAllPermission(){
-    this.rolesService.getAllPermission().subscribe((res)=>{
-      this.listPermission = res;
-     console.log(this.listPermission, 'this.listPermission');
-    }, ()=>{
+    // this.rolesService.getAllPermission().subscribe((res)=>{
+    //   this.listPermission = res;
+    //  console.log(this.listPermission, 'this.listPermission');
+    // }, ()=>{
 
-    })
+    // })
   }
 
   getByid(id: string){

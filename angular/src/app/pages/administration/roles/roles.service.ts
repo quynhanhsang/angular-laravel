@@ -38,7 +38,7 @@ export class RolesService {
     return this.http.post(AppConst.remoteServiceBaseUrl +'/api/roles/deleterange', ids);
   }
 
-  getAllPermission(){
-    return this.http.get<ListPermission<PermissonDto>>(AppConst.remoteServiceBaseUrl + `/api/roles/getAllPermission`);
+  getAllPermission(name?: string){
+    return this.http.get<ListPermission<PermissonDto>>(AppConst.remoteServiceBaseUrl + `/api/roles/getAllPermission/${name}`);
   }
 }

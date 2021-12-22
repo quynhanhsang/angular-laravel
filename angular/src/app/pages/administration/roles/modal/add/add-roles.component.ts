@@ -41,7 +41,7 @@ export class AddRolesComponent implements OnInit {
   }
 
   listPermission: ListPermission<PermissonDto>;
-
+  permissonDto: PermissonDto;
   @ViewChild('editModal') editModal : TemplateRef<any>;
 
   ngOnInit(): void {
@@ -55,7 +55,8 @@ export class AddRolesComponent implements OnInit {
   }
 
   getAllPermission(){
-    this.rolesService.getAllPermission().subscribe((res)=>{
+    debugger;
+    this.rolesService.getAllPermission(this.roleDto.guard_name).subscribe((res)=>{
       this.listPermission = res;
      console.log(this.listPermission, 'this.listPermission');
     }, ()=>{
@@ -72,8 +73,6 @@ export class AddRolesComponent implements OnInit {
       this.notifierService.notify('error', 'Bạn cần nhập đủ dữ liệu các trường có dấu * đỏ !!!');
       return;
     }
-
-    debugger;
     this.rolesService.add(this.roleDto).subscribe((subscribe: any)=>{
       console.log(subscribe, 'subrice')
       if(subscribe){

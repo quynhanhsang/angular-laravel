@@ -33,7 +33,7 @@
           <ng-container ngbNavItem>
             <a ngbNavLink>Quyền</a>
             <ng-template ngbNavContent>
-              <div *ngFor="let item of this.listPermission.items">
+              <div *ngFor="let item of this.listPermission?.items">
                 <div class="custom-control custom-checkbox">
                   <input type="checkbox" class="custom-control-input" (change)="selectItem(item)" id="customCheck{{item.id}}">
                   <label class="custom-control-label" for="customCheck{{item.id}}">{{item.name}}</label>
