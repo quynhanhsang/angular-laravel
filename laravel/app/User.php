@@ -47,6 +47,6 @@ class User extends Authenticatable
     //     $product->id_user = Auth::id();
     // }
 
-    protected $guard_name = 'api';
+    // protected $guard_name = 'api';
 
 }

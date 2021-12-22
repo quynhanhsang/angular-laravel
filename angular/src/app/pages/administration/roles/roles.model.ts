@@ -6,21 +6,18 @@ import { BaseEditDto } from "src/app/shared/base-dto/base-edit-dto";
 import { BaseFilterDto } from "src/app/shared/base-dto/base-filter-dto";
 
 export class AddRolesDto extends BaseAddDto {
-  role_name: string;
-  is_default: boolean;
-  permission_id: string;
+  name: string;
+  guard_name: string;
 }
 
 export class EditRolesDto extends BaseEditDto {
-  role_name: string;
-  is_default: boolean;
-  permission_id: string;
+  name: string;
+  guard_name: string;
 }
 
 export class RoleDto extends BaseDto{
-  role_name: string;
-  is_default: boolean;
-  permission_id: string;
+  name: string;
+  guard_name: string;
 }
 
 

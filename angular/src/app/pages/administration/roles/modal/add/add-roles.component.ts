@@ -1,7 +1,7 @@
 import { Component, ElementRef, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal, NgbNavConfig } from '@ng-bootstrap/ng-bootstrap';
 import { AddBaseComponent } from 'src/app/pages/base-component/add-base/add-base.component';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ShareDataService } from 'src/app/shared/share-service/share.service';
@@ -14,12 +14,11 @@ import { NotifierService } from 'angular-notifier';
 import { AppUtilityService } from 'src/app/shared/share-service/app-utility.service';
 import { AddRolesDto } from '../../roles.model';
 import { RolesService } from '../../roles.service';
-
 @Component({
   selector: 'app-add-roles',
   templateUrl: './add-roles.component.html',
   styleUrls:['./add-roles.component.css'] ,
-  providers: [NgbModal]
+  providers: [NgbModal, NgbNavConfig]
 })
 export class AddRolesComponent implements OnInit {
   roleDto: AddRolesDto;
@@ -57,14 +56,12 @@ export class AddRolesComponent implements OnInit {
     }
 
     this.rolesService.add(this.roleDto).subscribe((subscribe: any)=>{
-      console.log(subscribe);
       if(subscribe){
         this.notifierService.notify('success',subscribe.message);
         this.onClose();
       }
 
     }, err=>{
-     console.log(err, 'err');
     });
   }
 
@@ -73,7 +70,7 @@ export class AddRolesComponent implements OnInit {
       // có cần load lại page khi tắt modal page đi không. Nếu add thành công thì load lại, không thì thôi
       let dto = new ShareDto();
       dto.ids = new Array<number>();
-      dto.ids.push(COMPONENT_IDS.USER_COMPONENT);
+      dto.ids.push(COMPONENT_IDS.ROLES_COMPONENT);
       // load lại dữ liệu
       dto.data = true;
       this.shareService.emitChange(dto);

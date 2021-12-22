@@ -65,15 +65,17 @@ export class EditRolesComponent implements OnInit {
   }
 
   onSubmit(){
-    if(AppUtilityService.IsNullValidateForm('formEditUser')){
+    if(AppUtilityService.IsNullValidateForm('formEditRoles')){
       this.notifierService.notify('error', 'Bạn cần nhập đủ dữ liệu các trường có dấu * đỏ !!!');
       return;
     }
 
     this.rolesService.edit(this.roleDto).subscribe((subscribe: any)=>{
+      if(subscribe){
+        this.notifierService.notify('success',subscribe.message);
+        this.onClose();
+      }
 
-      this.notifierService.notify('success',subscribe.message);
-      this.onClose();
     }, err=>{
      console.log(err, 'err');
     });
@@ -84,7 +86,7 @@ export class EditRolesComponent implements OnInit {
       // có cần load lại page khi tắt modal page đi không. Nếu add thành công thì load lại, không thì thôi
       let dto = new ShareDto();
       dto.ids = new Array<number>();
-      dto.ids.push(COMPONENT_IDS.USER_COMPONENT);
+      dto.ids.push(COMPONENT_IDS.ROLES_COMPONENT);
       // load lại dữ liệu
       dto.data = true;
       this.shareService.emitChange(dto);

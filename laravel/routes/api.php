@@ -34,6 +34,17 @@ Route::group(['namespace'=>'Api\Auth'], function(){
     Route::post('/reset', 'ForgotPasswordController@reset');
 });
 
+Route::group(['namespace'=>'Api\Role'], function(){
+    Route::post('roles/filter', 'RoleController@filter')->middleware('auth:api');
+    Route::post('roles/add', 'RoleController@add')->middleware('auth:api');
+    Route::post('/roles/edit', 'RoleController@edit')->middleware('auth:api');
+    Route::get('/roles/getbyid/{id}', 'RoleController@getById')->middleware('auth:api');
+    Route::get('/roles/delete/{id}', 'RoleController@delete')->middleware('auth:api');
+    Route::post('/roles/deleterange', 'RoleController@deleterange')->middleware('auth:api');
+
+    Route::get('/roles/getAllPermission', 'RoleController@getAllPermission')->middleware('auth:api');
+});
+
 Route::group(['namespace'=>'Api\Permission'], function(){
     Route::get('permission/getall', 'PermissionController@getAll');
 });

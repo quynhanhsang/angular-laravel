@@ -16,25 +16,25 @@ export class RolesService {
 
   // Forgot Pass
   getById(id:string){
-    return this.http.get<EditRolesDto>(AppConst.remoteServiceBaseUrl + `/api/users/getbyid/${id}`);
+    return this.http.get<EditRolesDto>(AppConst.remoteServiceBaseUrl + `/api/roles/getbyid/${id}`);
   }
 
   filter(user?: FilterRolesDto){
     return this.http.post<PaginatedListDto<RoleDto>>(AppConst.remoteServiceBaseUrl +'/api/roles/filter', user);
   }
 
-  edit(user: EditRolesDto){
-    return this.http.post(AppConst.remoteServiceBaseUrl +'/api/users/edit', user);
+  edit(roles: EditRolesDto){
+    return this.http.post(AppConst.remoteServiceBaseUrl +'/api/roles/edit', roles);
   }
 
-  add(user: AddRolesDto){
-    return this.http.post(AppConst.remoteServiceBaseUrl +'/api/users/add', user);
+  add(roles: AddRolesDto){
+    return this.http.post(AppConst.remoteServiceBaseUrl +'/api/roles/add', roles);
   }
   delete(id: string){
-    return this.http.get(AppConst.remoteServiceBaseUrl +'/api/users/delete/'+id);
+    return this.http.get(AppConst.remoteServiceBaseUrl +'/api/roles/delete/'+id);
   }
 
   deleteRange(ids: DeleteRolesRangeDto){
-    return this.http.post(AppConst.remoteServiceBaseUrl +'/api/users/deleterange', ids);
+    return this.http.post(AppConst.remoteServiceBaseUrl +'/api/roles/deleterange', ids);
   }
 }

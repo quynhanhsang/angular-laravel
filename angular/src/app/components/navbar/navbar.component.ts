@@ -22,8 +22,8 @@ export class NavbarComponent implements OnInit {
     }, (err) => {
       console.log(err);
     });
-    let m = this.auth.getPermission();
-    console.log(m, 'nava')
+    // let m = this.auth.getPermission();
+    // console.log(m, 'nava')
   }
 
   editProfile(){
