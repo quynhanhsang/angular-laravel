@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\PermissionRegistrar;
@@ -63,15 +64,19 @@ class RoleController extends Controller
     {
         $validator = $this->validate($request, [
             'name' => 'required',
-            'guard_name'=>'required'
-        ]);
+            'guard_name'=>'required',
 
+        ]);
         $result = $validator;
         $role = Role::create([
             'name' => $request->name,
             'guard_name'=>$request->guard_name,
             'id_user' => Auth::user()->id,
         ]);
+
+        foreach($request->namePermisson as $item ){
+            $role->givePermissionTo($item);
+        };
         if($role){
             $result = [
                 'message'=>'Bạn đã thêm mới thành công',
@@ -79,7 +84,7 @@ class RoleController extends Controller
             ];
         }
 
-        return  response()->json($result);
+        return  response()->json($request->namePermisson);
     }
 
     public function edit(Request $request){

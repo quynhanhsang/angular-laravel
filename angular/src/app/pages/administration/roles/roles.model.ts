@@ -8,11 +8,13 @@ import { BaseFilterDto } from "src/app/shared/base-dto/base-filter-dto";
 export class AddRolesDto extends BaseAddDto {
   name: string;
   guard_name: string;
+  namePermisson: Array<string> = [];
 }
 
 export class EditRolesDto extends BaseEditDto {
   name: string;
   guard_name: string;
+  namePermisson: Array<string> = [];
 }
 
 export class RoleDto extends BaseDto{
@@ -28,4 +30,14 @@ export class FilterRolesDto extends BaseFilterDto{
 
 export class DeleteRolesRangeDto extends BaseDeleteDto {
 
+}
+
+export class PermissonDto{
+  id:number;
+  name: string;
+  guard_name: string;
+}
+
+export class ListPermission<TData>{
+  items: [TData];
 }

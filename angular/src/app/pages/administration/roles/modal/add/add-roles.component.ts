@@ -12,7 +12,7 @@ import { ShareDto } from 'src/app/components/common/models/share-model';
 import { COMPONENT_IDS } from 'src/app/components/common/const/component-constants';
 import { NotifierService } from 'angular-notifier';
 import { AppUtilityService } from 'src/app/shared/share-service/app-utility.service';
-import { AddRolesDto } from '../../roles.model';
+import { AddRolesDto, ListPermission, PermissonDto } from '../../roles.model';
 import { RolesService } from '../../roles.service';
 @Component({
   selector: 'app-add-roles',
@@ -40,22 +40,42 @@ export class AddRolesComponent implements OnInit {
 
   }
 
+  listPermission: ListPermission<PermissonDto>;
+
   @ViewChild('editModal') editModal : TemplateRef<any>;
 
   ngOnInit(): void {
     this.baseRoute = `/admin/roles`;
     this.roleDto = new AddRolesDto();
+    this.listPermission = new ListPermission<PermissonDto>();
+    this.getAllPermission();
   }
   ngAfterViewInit(): void {
 
   }
+
+  getAllPermission(){
+    this.rolesService.getAllPermission().subscribe((res)=>{
+      this.listPermission = res;
+     console.log(this.listPermission, 'this.listPermission');
+    }, ()=>{
+
+    })
+  }
+
+  selectItem(item: PermissonDto){
+     this.roleDto.namePermisson.push(item.name);
+  }
+
   onSubmit(){
     if(AppUtilityService.IsNullValidateForm('formAddRole')){
       this.notifierService.notify('error', 'Bạn cần nhập đủ dữ liệu các trường có dấu * đỏ !!!');
       return;
     }
 
+    debugger;
     this.rolesService.add(this.roleDto).subscribe((subscribe: any)=>{
+      console.log(subscribe, 'subrice')
       if(subscribe){
         this.notifierService.notify('success',subscribe.message);
         this.onClose();

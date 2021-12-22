@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { AppConst } from 'src/app/shared/AppConsts';
 import { PaginatedListDto } from 'src/app/shared/base-dto/base-paginated-list-dto';
-import { AddRolesDto, DeleteRolesRangeDto, EditRolesDto, FilterRolesDto, RoleDto } from './roles.model';
+import { AddRolesDto, DeleteRolesRangeDto, EditRolesDto, FilterRolesDto, ListPermission, PermissonDto, RoleDto } from './roles.model';
 
 
 @Injectable({
@@ -36,5 +36,9 @@ export class RolesService {
 
   deleteRange(ids: DeleteRolesRangeDto){
     return this.http.post(AppConst.remoteServiceBaseUrl +'/api/roles/deleterange', ids);
+  }
+
+  getAllPermission(){
+    return this.http.get<ListPermission<PermissonDto>>(AppConst.remoteServiceBaseUrl + `/api/roles/getAllPermission`);
   }
 }

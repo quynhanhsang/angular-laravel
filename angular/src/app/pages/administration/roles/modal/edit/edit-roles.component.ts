@@ -13,7 +13,7 @@ import { ShareDto } from 'src/app/components/common/models/share-model';
 import { COMPONENT_IDS } from 'src/app/components/common/const/component-constants';
 import { NotifierService } from 'angular-notifier';
 import { AppUtilityService } from 'src/app/shared/share-service/app-utility.service';
-import { EditRolesDto } from '../../roles.model';
+import { EditRolesDto, ListPermission, PermissonDto } from '../../roles.model';
 import { RolesService } from '../../roles.service';
 
 @Component({
@@ -42,6 +42,8 @@ export class EditRolesComponent implements OnInit {
       this.notifierService = notifierService;
   }
 
+  listPermission: ListPermission<PermissonDto>;
+
   @ViewChild('editModal') editModal : TemplateRef<any>;
 
   ngOnInit(): void {
@@ -51,10 +53,21 @@ export class EditRolesComponent implements OnInit {
       let id = params['id'];
       this.getByid(id);
     });
+    this.getAllPermission();
   }
   ngAfterViewInit(): void {
 
   }
+
+  getAllPermission(){
+    this.rolesService.getAllPermission().subscribe((res)=>{
+      this.listPermission = res;
+     console.log(this.listPermission, 'this.listPermission');
+    }, ()=>{
+
+    })
+  }
+
   getByid(id: string){
     this.rolesService.getById(id).subscribe((sub)=>{
       this.roleDto = sub;
@@ -63,6 +76,9 @@ export class EditRolesComponent implements OnInit {
       return;
     })
   }
+  selectItem(item: PermissonDto){
+    this.roleDto.namePermisson.push(item.name);
+ }
 
   onSubmit(){
     if(AppUtilityService.IsNullValidateForm('formEditRoles')){
