@@ -1,0 +1,52 @@
+
+<div id="blur-page"></div>
+<div class="modal d-block" id="formAddUser">
+    <div class="modal-dialog modal-dialog-scrollable modal-xl">
+      <div class="modal-content">
+        <div class="modal-header" ngxModalDraggable appHideScrollbarY>
+          <h4 class="modal-title">Thêm users</h4>
+          <button type="button" class="close" aria-label="Close" (click)="onClose()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Tên <i class="fas fa-asterisk"></i></label>
+            <input type="text" class="form-control" placeholder="Họ tên" [(ngModel)]="userDto.name" #name>
+            <validation-custom-messages [nativeElement]="name" [sModel]="userDto.name"></validation-custom-messages>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1"> Họ và tên <i class="fas fa-asterisk"></i></label>
+            <input type="text" class="form-control" placeholder="Họ tên" [(ngModel)]="userDto.fullName" #fullName>
+            <validation-custom-messages [nativeElement]="fullName" [sModel]="userDto.fullName"></validation-custom-messages>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email <i class="fas fa-asterisk"></i></label>
+            <input type="text" class="form-control" placeholder="Email" [(ngModel)]="userDto.email" #email>
+            <validation-custom-messages [nativeElement]="email" [sModel]="userDto.email"></validation-custom-messages>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Mật khẩu <i class="fas fa-asterisk"></i></label>
+            <input type="text" class="form-control" placeholder="Mật khẩu"  [(ngModel)]="userDto.password" #password>
+            <validation-custom-messages [nativeElement]="password"  [sModel]="userDto.password"></validation-custom-messages>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Nhập lại mật khẩu <i class="fas fa-asterisk"></i></label>
+            <input type="text" class="form-control" placeholder="Nhập lại mật khẩu" [(ngModel)]="userDto.writepassword" #writepassword>
+            <validation-custom-messages [nativeElement]="writepassword"  [sModel]="userDto.writepassword"></validation-custom-messages>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Ngày sinh</label>
+            <input type="date" class="form-control" placeholder="Ngày sinh" [(ngModel)]="userDto.dateBirth" value="2021-12-02 00:00:00">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" (click)="onSubmit()"> <i class="far fa-save"></i> Lưu</button>
+          <button type="button" class="btn btn-outline-dark" (click)="onClose()"> <i class="far fa-times-circle"></i> Đóng</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
